@@ -38,13 +38,12 @@ def insert():
        hrscore = request.form['hrscore']
        location = request.form['location']
        emp_resume = request.files['emp_resume']
-
-        db.insert_details(ename,email,ephno,exp,apt,gdscore,hrscore,location)
-        details = db.get_details()
-        print(details)
-        for detail in details:
-            var = detail
-        return render_template('AddEmpOutput.html',var=var)
+       db.insert_details(ename,email,ephno,exp,apt,gdscore,hrscore,location)
+       details = db.get_details()
+       print(details)
+       for detail in details:
+           var = detail
+       return render_template('AddEmpOutput.html',var=var)
 
 
 
