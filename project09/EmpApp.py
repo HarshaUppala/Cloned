@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,flash, redirect,url_for, jsonify, session 
 from pymysql import connections
+from flask import Response,send_file
 import os
 import boto3
+import rds_db as db
 from config import *
 
 app = Flask(__name__)
@@ -43,6 +45,11 @@ def AddEmp():
 
     insert_sql = "INSERT INTO empdata VALUES (%s, %s, %s, %s, %s ,%s ,%s ,%s)"
     cursor = db_conn.cursor()
+    details = db.get_details()
+        print(details)
+        for detail in details:
+            var = detail
+        return render_template('AddEmpOutput.html',var=var)
 
     if emp_resume.filename == "":
         return "Please select a file"
@@ -83,3 +90,9 @@ def AddEmp():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
+
+def get_details():
+    cur=conn.cursor()
+    cur.execute("SELECT *  FROM empdata")
+    details = cur.fetchall()
+    return details
