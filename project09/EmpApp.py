@@ -27,7 +27,7 @@ def home():
 
 def insert_details(name,email,comment,gender):
     cur=conn.cursor()
-    cur.execute("INSERT INTO empdata(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
+    cur.execute("INSERT INTO empdata(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
     conn.commit()#read the data
 
 def get_details():
