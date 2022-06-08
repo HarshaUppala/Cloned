@@ -22,17 +22,6 @@ db_conn = connections.Connection(
 output = {}
 table = 'empdata'
 
-def insert_details(ename,email,ephno,exp,apt,gdscore,hrscore,location):
-    cur=conn.cursor()
-    cur.execute("INSERT INTO empdata (ename,email,ephno,exp,apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email,ephno,exp,apt,gdscore,hrscore,location))
-    conn.commit()
-
-def get_details():
-    cur=conn.cursor()
-    cur.execute("SELECT *  FROM empdata")
-    details = cur.fetchall()
-    return details
-
 @app.route('/')
 def index():
     
@@ -64,3 +53,13 @@ if __name__ == "__main__":
     
     app.run(debug=True)
 
+# def insert_details(ename,email,ephno,exp,apt,gdscore,hrscore,location):
+#     cur=conn.cursor()
+#     cur.execute("INSERT INTO empdata (ename,email,ephno,exp,apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email,ephno,exp,apt,gdscore,hrscore,location))
+#     conn.commit()
+
+# def get_details():
+#     cur=conn.cursor()
+#     cur.execute("SELECT *  FROM empdata")
+#     details = cur.fetchall()
+#     return details
