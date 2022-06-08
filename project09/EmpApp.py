@@ -25,7 +25,7 @@ table = 'empdata'
 @app.route('/')
 def index():
     
-    return render_template('AddEmp.html')
+    return render_template('AddEmp\')
 
 @app.route('/insert',methods = ['POST'])
 def insert():
