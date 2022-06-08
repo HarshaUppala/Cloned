@@ -55,10 +55,26 @@ h1 , h2{
     }
 	</style>
 
+
 		<body>
 			<h1>SAVE SUCCESSFUL</h1><br>
 			<h2>Following Employee has been added to the database</h2><br>
 			<h2>{{ name }}</h2><br>
+			<script>
+				let gdscore={{gdscore}};
+				let hrscore={{hrscore}};
+				let apt={{apt}};
+				let score=(gdscore+hrscore+apt)/10;
+				if(score<30){
+				document.write("CTC Offered 3 LPA ");
+				}
+				else if(score>30 && score<60){
+				document.write("CTC Offered 5 LPA ");
+				}
+				else{
+				document.write("CTC Offered 8 LPA ");
+				}
+			</script>
 			<div class="container">
 			<div class="formcontainer"
 			action="/retemp"
