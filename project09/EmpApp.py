@@ -4,6 +4,7 @@ from config import *
 from pymysql import connections
 import os
 import boto3
+import rds_db as db
 
 app = Flask(__name__)
 
@@ -21,7 +22,6 @@ db_conn = connections.Connection(
 output = {}
 table = 'empdata'
 
-import rds_db as db
 
 
 @app.route('/')
