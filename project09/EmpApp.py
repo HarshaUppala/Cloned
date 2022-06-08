@@ -4,7 +4,7 @@ from config import *
 from pymysql import connections
 import os
 import boto3
-import rds_db as db
+# import rds_db as db
 
 app = Flask(__name__)
 
@@ -22,14 +22,23 @@ db_conn = connections.Connection(
 output = {}
 table = 'empdata'
 
+def insert_details(ename,email,ephno,exp,apt,gdscore,hrscore,location):
+    cur=conn.cursor()
+    cur.execute("INSERT INTO empdata (ename,email,ephno,exp,apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email,ephno,exp,apt,gdscore,hrscore,location))
+    conn.commit()
 
+def get_details():
+    cur=conn.cursor()
+    cur.execute("SELECT *  FROM empdata")
+    details = cur.fetchall()
+    return details
 
 @app.route('/')
 def index():
     
-    return render_template('index.html')
+    return render_template('AddEmp.html')
 
-@app.route('/insert',methods = ['post'])
+@app.route('/insert',methods = ['POST'])
 def insert():
     
     if request.method == 'POST':
@@ -54,3 +63,4 @@ def insert():
 if __name__ == "__main__":
     
     app.run(debug=True)
+
