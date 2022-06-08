@@ -1,5 +1,4 @@
 import pymysql
-import pymysql.cursor
 conn = pymysql.connect(
         host= "emp-database.cruq67uutafa.ap-south-1.rds.amazonaws.com", #endpoint link
         port = "3306", # 3306
