@@ -25,6 +25,36 @@ table = 'empdata'
 def home():
     return render_template('AddEmp.html')
 
+def insert_details(name,email,comment,gender):
+    cur=conn.cursor()
+    cur.execute("INSERT INTO empdata(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
+    conn.commit()#read the data
+
+def get_details():
+    cur=conn.cursor()
+    cur.execute("SELECT *  FROM empdata")
+    details = cur.fetchall()
+    return details
+
+@app.route('/insert',methods = ['post'])
+def insert():
+    
+    if request.method == 'POST':
+        ename = request.form['ename']
+        email = request.form['email']
+        ephno = request.form['ephno']
+        exp = request.form['exp']
+        apt = request.form['apt']
+        gdscore = request.form['gdscore']
+        hrscore = request.form['hrscore']
+        location = request.form['location']
+        insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location)
+        details = get_details()
+        print(details)
+        for detail in details:
+            var = detail
+        return render_template('AddEmp.html',var=var)
+
 
 @app.route("/about", methods=['POST'])
 def about():
@@ -44,7 +74,6 @@ def AddEmp():
 
     insert_sql = "INSERT INTO empdata VALUES (%s, %s, %s, %s, %s ,%s ,%s ,%s)"
     cursor = db_conn.cursor()
-
     if emp_resume.filename == "":
         return "Please select a file"
 
