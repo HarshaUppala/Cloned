@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from pymysql import connections
+from pymysql import *
 import os
 import boto3
 from config import *
@@ -26,12 +26,12 @@ def home():
     return render_template('AddEmp.html')
 
 def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location):
-    cur=conn.cursor()
+    cur=db_conn.cursor()
     cur.execute("INSERT INTO empdata(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
-    conn.commit()#read the data
+    db_conn.commit()#read the data
 
 def get_details():
-    cur=conn.cursor()
+    cur=db_conn.cursor()
     cur.execute("SELECT *  FROM empdata")
     details = cur.fetchall()
     return details
