@@ -33,8 +33,8 @@ def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location):
 def get_details():
     cur=db_conn.cursor()
     cur.execute("SELECT *  FROM empdata")
-    details = cur.fetchall()
-    return details
+    empdata = cur.fetchall()
+    return empdata
 
 @app.route('/insert',methods = ['post'])
 def insert():
@@ -49,9 +49,9 @@ def insert():
         hrscore = request.form['hrscore']
         location = request.form['location']
         insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location)
-        details = get_details()
-        print(details)
-        for detail in details:
+        empdata = get_details()
+        print(empdata)
+        for detail in empdata:
             var = detail
         return render_template('AddEmp.html',var=var)
 
