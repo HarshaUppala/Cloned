@@ -25,7 +25,7 @@ table = 'empdata'
 def home():
     return render_template('AddEmp.html')
 
-def insert_details(name,email,comment,gender):
+def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location):
     cur=conn.cursor()
     cur.execute("INSERT INTO empdata(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
     conn.commit()#read the data
