@@ -3,6 +3,15 @@ from pymysql import *
 import os
 import boto3
 from config import *
+from s3_functions import upload_file, show_image
+from werkzeug.utils import secure_filename
+
+app = Flask(__name__)
+UPLOAD_FOLDER = "uploads"
+BUCKET = "<dataemployee001>"
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 app = Flask(__name__)
 
@@ -36,6 +45,23 @@ def get_details():
     cur.execute("SELECT *  FROM emptable")
     emptable = cur.fetchall()
     return emptable
+
+def show_image(bucket):
+    s3_client = boto3.client('s3')
+    public_urls = []
+    try:
+        for item in s3_client.list_objects(Bucket=bucket)['Contents']:
+            presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
+            public_urls.append(presigned_url)
+    except Exception as e:
+        pass
+    # print("[INFO] : The contents inside show_image = ", public_urls)
+    return public_urls
+
+@app.route("/pics")
+def list():
+    contents = show_image(BUCKET)
+    return render_template('AddEmpOutput.html', contents=contents)
 
 @app.route('/insert',methods = ['post'])
 def insert():
