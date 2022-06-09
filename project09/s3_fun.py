@@ -1,4 +1,13 @@
 import boto3
+from flask import Flask, render_template, request
+from pymysql import *
+import os
+import boto3
+from config import *
+
+app = Flask(__name__)
+UPLOAD_FOLDER = "uploads"
+BUCKET = "<dataemployee001>"
 
 def upload_file(file_name, bucket):
     object_name = file_name
