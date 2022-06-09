@@ -3,7 +3,7 @@ from pymysql import *
 import os
 import boto3
 from config import *
-from s3_functions import *
+from s3_fun import *
 from werkzeug.utils import *
 
 
