@@ -18,7 +18,7 @@ db_conn = connections.Connection(
 
 )
 output = {}
-table = 'empdata'
+table = 'emptable'
 
 
 
@@ -28,14 +28,14 @@ def home():
 
 def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location):
     cur=db_conn.cursor()
-    cur.execute("INSERT INTO empdata(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
+    cur.execute("INSERT INTO emptable(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
     db_conn.commit()#read the data
 
 def get_details():
     cur=db_conn.cursor()
-    cur.execute("SELECT *  FROM empdata")
-    empdata = cur.fetchall()
-    return empdata
+    cur.execute("SELECT *  FROM emptable")
+    emptable = cur.fetchall()
+    return emptable
 
 @app.route('/insert',methods = ['post'])
 def insert():
@@ -50,9 +50,9 @@ def insert():
         hrscore = request.form['hrscore']
         location = request.form['location']
         insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location)
-        empdata = get_details()
-        print(empdata)
-        for detail in empdata:
+        emptable = get_details()
+        print(emptable)
+        for detail in emptable:
             var = detail
         return render_template('AddEmp.html',var=var)
 
@@ -73,7 +73,7 @@ def AddEmp():
     location = request.form['location']
     emp_resume = request.files['emp_resume']
 
-    insert_sql = "INSERT INTO empdata VALUES (%s, %s, %s, %s, %s ,%s ,%s ,%s)"
+    insert_sql = "INSERT INTO emptable VALUES (%s, %s, %s, %s, %s ,%s ,%s ,%s)"
     cursor = db_conn.cursor()
     if emp_resume.filename == "":
         return "Please select a file"
