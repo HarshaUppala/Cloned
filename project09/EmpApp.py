@@ -3,8 +3,8 @@ from pymysql import *
 import os
 import boto3
 from config import *
-from s3_functions import upload_file, show_image
-from werkzeug.utils import secure_filename
+from s3_functions import *
+from werkzeug.utils import *
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
