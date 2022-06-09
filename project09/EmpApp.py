@@ -6,14 +6,13 @@ from config import *
 from s3_functions import *
 from werkzeug.utils import *
 
+
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
 BUCKET = "<dataemployee001>"
 
-if __name__ == '__main__':
-    app.run(debug=True)
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
 bucket = custombucket
 region = customregion
@@ -35,6 +34,15 @@ table = 'emptable'
 def home():
     return render_template('AddEmp.html')
 
+@app.route("/upload", methods=['POST'])
+def upload():
+    if request.method == "POST":
+        f = request.files['file']
+        f.save(os.path.join(UPLOAD_FOLDER, secure_filename(f.filename)))
+        upload_file(f"uploads/{f.filename}", BUCKET)
+        return redirect("/")
+
+
 def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location):
     cur=db_conn.cursor()
     cur.execute("INSERT INTO emptable(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
@@ -46,17 +54,6 @@ def get_details():
     emptable = cur.fetchall()
     return emptable
 
-def show_image(bucket):
-    s3_client = boto3.client('s3')
-    public_urls = []
-    try:
-        for item in s3_client.list_objects(Bucket=bucket)['Contents']:
-            presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
-            public_urls.append(presigned_url)
-    except Exception as e:
-        pass
-    # print("[INFO] : The contents inside show_image = ", public_urls)
-    return public_urls
 
 @app.route("/pics")
 def list():
