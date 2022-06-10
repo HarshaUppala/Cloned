@@ -45,7 +45,7 @@ def upload():
 
 def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location):
     cur=db_conn.cursor()
-    cur.execute("INSERT INTO emptable(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%d,%d,%d,%d,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
+    cur.execute("INSERT INTO emptable(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
     db_conn.commit()#read the data
 
 def get_details():
@@ -96,7 +96,7 @@ def AddEmp():
     location = request.form['location']
     emp_resume = request.files['emp_resume']
 
-    insert_sql = "INSERT INTO emptable VALUES (%s,%s,%s,%d,%d,%d,%d,%s)"
+    insert_sql = "INSERT INTO emptable VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
     cursor = db_conn.cursor()
     if emp_resume.filename == "":
         return "Please select a file"
