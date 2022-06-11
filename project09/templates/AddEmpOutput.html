@@ -62,10 +62,16 @@ h1 , h2{
 			<h1>SAVE SUCCESSFUL</h1><br>
 			<h2>Following Candidate has been added to the database</h2><br>
 			<h2>{{ name }}</h2><br>
+			<div class="container">
+			<div class="formcontainer"
+			action="/retemp"
+			autocomplete="on"
+			method="GET"
+			enctype="multipart/form-data">
 			<script>
-				let gdscore={{ gdscore }};
-				let hrscore={{ hrscore }};
-				let apt={{ apt }};
+				let gdscore=gdscore;
+				let hrscore=hrscore;
+				let apt=apt;
 				let score=(gdscore+hrscore+apt)/10;
 				if(score<30){
 				document.write("CTC Offered 3 LPA ");
@@ -77,16 +83,10 @@ h1 , h2{
 				document.write("CTC Offered 8 LPA ");
 				}
 			</script>
-			<div class="container">
-			<div class="formcontainer"
-			action="/retemp"
-			autocomplete="on"
-			method="GET"
-			enctype="multipart/form-data">
 
 			   {{ var }}
-
-			   Salary:<br> {{ experience+apt }} <br><br>
+<!-- 
+			   Salary:<br> {{ experience+apt }} <br><br> -->
 
 				Name:<br> {{ name }} <br><br>
 
