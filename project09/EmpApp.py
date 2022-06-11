@@ -80,9 +80,9 @@ def insert():
         return render_template('AddEmp.html',var=var)
 
 
-@app.route("/about", methods=['POST'])
-def about():
-    return render_template('#')
+# @app.route("/about", methods=['POST'])
+# def about():
+#     return render_template('#')
 
 @app.route("/addemp", methods=['POST'])
 def AddEmp():

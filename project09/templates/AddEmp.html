@@ -68,6 +68,15 @@ background-size: cover;
     .button:hover{
         background-color: var(--color-secondary);
     }
+
+    .btn{
+      color:black;
+      background-color: white;
+    }
+
+    .btn:hover{
+        background-color: var(--color-secondary);
+    }
   </style>
 
      <body>
@@ -79,8 +88,6 @@ background-size: cover;
           method="POST"
           enctype="multipart/form-data"
         >
-
-        <button type="submit" formaction="/getemp" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">GET EMPLOYEE INFORMATION</button><br><br>
 
         <label for="name">Name</label>
         <input placeholder="Enter your name" class="name" type="text" name="ename" required>
@@ -121,12 +128,12 @@ background-size: cover;
           >UPDATE DATABASE
         </button>
         </form>
-        <div class="statusbtn">
-          <a href=\"GetEmp.html">
-            <button>Status Check</button>
-          </a>
-          <!-- <button class="button"  onclick="GetEmp.html">STATUS CHECK</button> -->
-        </div>
+      </div>
+      <div class="statusbtn">
+        <a href=\"GetEmp.html">
+          <button class="btn">Status Check</button>
+        </a>
+        <!-- <button class="button"  onclick="GetEmp.html">STATUS CHECK</button> -->
       </div>
       </body>
 </html>
