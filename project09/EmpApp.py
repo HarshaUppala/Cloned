@@ -50,7 +50,8 @@ def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location):
 
 def get_details():
     cur=db_conn.cursor()
-    cur.execute("SELECT *  FROM emptable")
+    # cur.execute("SELECT *  FROM emptable")
+    cur.execute("SELECT ename,email, ephno, exp, apt,gdscore,hrscore,location,exp*1000+apt*1000 as 'salary'  FROM emptable")
     emptable = cur.fetchall()
     return emptable
 
