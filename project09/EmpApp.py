@@ -135,7 +135,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=ename,email=email,phno=ephno,experience=exp,aptitude=apt,gd=gdscore,hr=hrscore,loc=location,salary=salary)
+    return render_template('AddEmpOutput.html', name=ename,email=email,phno=ephno,experience=exp,aptitude=apt,gd=gdscore,hr=hrscore,loc=location,esalary=salary)
 
 
 if __name__ == '__main__':
