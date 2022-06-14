@@ -35,6 +35,7 @@ background-size: cover;
       border: 2rem;
       border-radius: 1rem;
 	  margin-bottom: 2rem;
+	  margin-top: 2rem;
 }
 
 .btncontainer{
@@ -56,12 +57,17 @@ h1 , h2{
         background-color: var(--color-secondary);
     }
 
+p {
+	
+}
+
 	</style>
 
 
 		<body>
 			<h1>Welcome {{ name }}</h1><br>
-			<h2>Congratulations you have been offered {{ esalary }}</h2><br>
+			<h2>Congratulations you have been offered</h2>
+			<h1>{{ name }}</h1>
 			<div class="container">
 			<div class="formcontainer"
 			action="/retemp"
@@ -69,25 +75,15 @@ h1 , h2{
 			method="GET"
 			enctype="multipart/form-data">
 
-			<p>{{ name }}</p>
-				Name:<br> {{ name }} <br><br>
-
-				Email:<br> {{ email }} <br><br>
-
-				Phone Number:<br> {{ phno }} <br><br>
-
-				Experience:<br> {{ experience }} <br><br>
-
-				Aptitude Score:<br>{{ aptitude }} <br><br>
-
-				Group Discussion Score: <br> {{ gd }} <br><br>
-				
-			    HR score:<br> {{ hr }} <br><br>
-
-			    Location:<br> {{ loc }} <br><br>
-
-				Salary:<br>{{ esalary }} <br><br>
-
+			<p><b> Name</b>:{{ name }}</p>
+			<p><b> Email</b>:{{ email }}</p>
+			<p><b> Phone Number</b>:{{ phno }}</p>
+			<p><b> Experience</b>:{{ experience }}</p>
+			<p><b> Aptitude Score</b> :{{ aptitude }}</p>
+			<p><b> Gd Score</b>:{{ gd }}</p>
+			<p><b> HR Score</b>:{{ hr }}</p>
+			<p><b> Location</b>:{{ loc }}</p>
+			<p><b> Salary</b>:{{ esalary }}</p>
 			</div>
 			</div>
 			<div class="btncontainer">
