@@ -81,7 +81,7 @@
     }
   </style>
 
-  <body>
+  <body id="clear">
     <h1><b>EMPLOYEE HIRING</b></h1>
     <div class="formcontainer">
       <form
@@ -160,9 +160,11 @@
       </form>
     </div>
     <div class="statusbtn">
-      <button class="btn" id="statusid">Status Check</button>
+      <button  id="statusid" onclick="clear()"> Status Check</button>
     </div>
+
     <script>
+
       function output() {
         var apt = Number(document.getElementById("aptid").value);
         console.log(typeof apt);
@@ -183,8 +185,33 @@
       }
 
       document.getElementById("statusid").onclick = function () {
-        location.href = "getemp.html";
-      };
+        document.getElementById('clear').innerHTML=' ';
+        console.log('hello');
+        var object=`<center>
+		<h1><b>Get Candidate Information</b></h1>
+
+
+			<div class="formcontainer">
+
+			<form action="/fetchdata" autocomplete="on" method="POST">
+
+				
+
+				<label for="email"> Candidate Email</label>
+				<input required placeholder="abc@gmail.com" type="Email" name="email">
+
+
+		  		<button type="submit">FETCH INFO</button><br><br>
+
+		  		<button type="submit" formaction="http://13.126.63.192/" method="GET">GO TO UPDATE DATABASE PAGE</button>
+
+			</form>
+
+			</div>
+
+</center>`;
+document.getElementById('clear').innerHTML=object;
+    };
     </script>
   </body>
 </html>
