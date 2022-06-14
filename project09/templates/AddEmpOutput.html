@@ -68,21 +68,7 @@ h1 , h2{
 			autocomplete="on"
 			method="GET"
 			enctype="multipart/form-data">
-			<!-- <script>
-				let gdscore=gdscore;
-				let hrscore=hrscore;
-				let apt=aptitude;
-				let score=(gdscore+hrscore+apt)/10;
-				if(score<30){
-				document.write("CTC Offered 3 LPA ");
-				}
-				else if(score>30 && score<60){
-				document.write("CTC Offered 5 LPA ");
-				}
-				else{
-				document.write("CTC Offered 8 LPA ");
-				}
-			</script> -->
+
 
 			   {{ var }}
 
@@ -126,8 +112,21 @@ h1 , h2{
 				</div>
 			</div>
 		</body>
-</head>
-<body>
+		<script>
+			let gdscore=gdscore;
+			document.write("gdscore")
+			let hrscore=hrscore;
+			let apt=aptitude;
+			let score=(gdscore+hrscore+apt)/10;
+			if(score<30){
+			document.write("CTC Offered 3 LPA ");
+			}
+			else if(score>30 && score<60){
+			document.write("CTC Offered 5 LPA ");
+			}
+			else{
+			document.write("CTC Offered 8 LPA ");
+			}
+		</script>
 
-</body>
 </html>
