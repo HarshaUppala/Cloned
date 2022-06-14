@@ -55,6 +55,13 @@ def get_details():
     emptable = cur.fetchall()
     return emptable
 
+@app.route("/fetch_details")
+def fetch_details(eemail):
+    cur=db_conn.cursor()
+    # cur.execute("SELECT *  FROM emptable")
+    cur.execute("SELECT * from emptable where email==eemail;")
+    emptable = cur.fetchall()
+    return render_template('GetEmpOutput.html',name=ename,email=email,phno=ephno,experience=exp,aptitude=apt,gd=gdscore,hr=hrscore,loc=location,esalary=salary)
 
 @app.route("/pics")
 def list():
