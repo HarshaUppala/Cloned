@@ -101,17 +101,19 @@ background-size: cover;
         <label for="experience">Experience</label>
         <input placeholder="Experience in no.of years" type="number" name="exp" required>
 
-        <label for="aptitudescore" id="aptid">Aptitude Score</label>
-        <input placeholder="Marks scored in aptitude" type="number" name="apt" required>
+        <label for="aptitudescore" >Aptitude Score</label>
+        <input placeholder="Marks scored in aptitude" type="number" name="apt" id="aptid"  required>
 
-        <label for="gdscore" id="gdid">Group Discussion(GD) Score</label>
-        <input placeholder="Marks scored in GD" type="number" name="gdscore" required>
+        <label for="gdscore">Group Discussion(GD) Score</label>
+        <input placeholder="Marks scored in GD" type="number" name="gdscore" id="gdid" required>
 
-        <label for="hrscore" id="hrid">HR score</label>
-        <input placeholder="Marks scored in HR round" type="number" name="hrscore" required>
+        <label for="hrscore">HR score</label>
+        <input placeholder="Marks scored in HR round" type="number" name="hrscore" id="hrid" onchange="output()"  required>
 
         <label for="Location">Location</label>
         <input placeholder="Loaction" type="text" name="location" required>
+
+        <p id="pass" hidden name="salary"></p>
 
           Resume:
           <input
@@ -136,9 +138,28 @@ background-size: cover;
         </a>
         <!-- <button class="button"  onclick="GetEmp.html">STATUS CHECK</button> -->
       </div>
-      </body>
-      <script src="./script.js">
-        // let apt=document.getElementById('aptid').value;
-        // console.log(apt);
+      <script>
+        function output(){
+          var apt=Number(document.getElementById('aptid').value);
+        console.log(typeof(apt));
+        var gd=Number(document.getElementById('gdid').value);
+        var hr=Number(document.getElementById('hrid').value);
+        var score=(gd+hr+apt)/10;
+			if(score<30){
+			console.log("CTC Offered 3 LPA "+score);
+      document.getElementById('pass').innerHTML='CTC Offered 3 LPA';
+			}
+			else if(score>30 && score<60){
+			console.log("CTC Offered 5 LPA "+score);
+      document.getElementById('pass').innerHTML='CTC Offered 5 LPA';
+			}
+			else{
+			console.log("CTC Offered 8 LPA "+score);
+      document.getElementById('pass').innerHTML='CTC Offered 8 LPA';
+			}
+        }
+       
       </script>
+      </body>
+    
 </html>
