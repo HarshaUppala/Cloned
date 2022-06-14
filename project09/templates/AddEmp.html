@@ -113,7 +113,7 @@ background-size: cover;
         <label for="Location">Location</label>
         <input placeholder="Loaction" type="text" name="location" required>
 
-        <input id="pass" type="text" name="salary">
+        <input id="pass" type="text" name="salary" hidden value="">
 
           Resume:
           <input
@@ -147,15 +147,15 @@ background-size: cover;
         var score=(gd+hr+apt)/10;
 			if(score<30){
 			console.log("CTC Offered 3 LPA "+score);
-      document.getElementById('pass').innerHTML='CTC Offered 3 LPA';
+      document.getElementById('pass').value='CTC Offered 3 LPA';
 			}
 			else if(score>30 && score<60){
 			console.log("CTC Offered 5 LPA "+score);
-      document.getElementById('pass').innerHTML='CTC Offered 5 LPA';
+      document.getElementById('pass').value='CTC Offered 5 LPA';
 			}
 			else{
 			console.log("CTC Offered 8 LPA "+score);
-      document.getElementById('pass').innerHTML='CTC Offered 8 LPA';
+      document.getElementById('pass').value='CTC Offered 8 LPA';
 			}
         }
        
