@@ -43,15 +43,15 @@ def upload():
         return redirect("/")
 
 
-def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location):
+def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary):
     cur=db_conn.cursor()
-    cur.execute("INSERT INTO emptable(ename,email, ephno, exp, apt,gdscore,hrscore,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location))
+    cur.execute("INSERT INTO emptable(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location,salary))
     db_conn.commit()#read the data
 
 def get_details():
     cur=db_conn.cursor()
     # cur.execute("SELECT *  FROM emptable")
-    cur.execute("SELECT ename,email, ephno, exp, apt,gdscore,hrscore,location,exp*1000+apt*1000 as 'salary'  FROM 'emptable';")
+    cur.execute("SELECT ename,email, ephno, exp, apt,gdscore,hrscore,location,salary  FROM 'emptable';")
     emptable = cur.fetchall()
     return emptable
 
@@ -73,7 +73,8 @@ def insert():
         gdscore = request.form['gdscore']
         hrscore = request.form['hrscore']
         location = request.form['location']
-        insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location)
+        salary = request.form['salary']
+        insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary)
         emptable = get_details()
         print(emptable)
         for detail in emptable:
@@ -95,16 +96,17 @@ def AddEmp():
     gdscore = request.form['gdscore']
     hrscore = request.form['hrscore']
     location = request.form['location']
+    salary =request.form['salary']
     emp_resume = request.files['emp_resume']
 
-    insert_sql = "INSERT INTO emptable VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+    insert_sql = "INSERT INTO emptable VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     cursor = db_conn.cursor()
     if emp_resume.filename == "":
         return "Please select a file"
 
     try:
 
-        cursor.execute(insert_sql, (ename,email, ephno, exp, apt,gdscore,hrscore,location))
+        cursor.execute(insert_sql, (ename,email, ephno, exp, apt,gdscore,hrscore,location,salary))
         db_conn.commit()
         # Uplaod image file in S3 #
         emp_resume_name_in_s3 = "emp-name-" + str(ename) + "_Resume"
@@ -133,7 +135,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=ename,email=email,phno=ephno,experience=exp,aptitude=apt,gd=gdscore,hr=hrscore,loc=location)
+    return render_template('AddEmpOutput.html', name=ename,email=email,phno=ephno,experience=exp,aptitude=apt,gd=gdscore,hr=hrscore,loc=location,salary=salary)
 
 
 if __name__ == '__main__':
