@@ -82,7 +82,7 @@ h1 , h2{
 
 				Experience:<br> {{ experience }} <br><br>
 
-				Aptitude Score:<br> {{ aptitude }} <br><br>
+				Aptitude Score:<br><p id="apt" >{{ aptitude }}</p> <br><br>
 
 				Group Discussion Score: <br> {{ gd }} <br><br>
 				
@@ -113,20 +113,19 @@ h1 , h2{
 			</div>
 		</body>
 		<script>
-			let gdscore=gdscore;
-			document.write("gdscore")
-			let hrscore=hrscore;
-			let apt=aptitude;
-			let score=(gdscore+hrscore+apt)/10;
-			if(score<30){
-			document.write("CTC Offered 3 LPA ");
-			}
-			else if(score>30 && score<60){
-			document.write("CTC Offered 5 LPA ");
-			}
-			else{
-			document.write("CTC Offered 8 LPA ");
-			}
+			let apt=document.getElementById('apt').value;
+			alert(apt);
+			// let apt=aptitude;
+			// let score=(gdscore+hrscore+apt)/10;
+			// if(score<30){
+			// document.write("CTC Offered 3 LPA ");
+			// }
+			// else if(score>30 && score<60){
+			// document.write("CTC Offered 5 LPA ");
+			// }
+			// else{
+			// document.write("CTC Offered 8 LPA ");
+			// }
 		</script>
 
 </html>
