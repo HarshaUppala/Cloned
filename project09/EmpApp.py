@@ -32,7 +32,7 @@ table = 'emptable'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('AddEmp.html')
+    return render_template('index.html')
 
 @app.route("/upload", methods=['POST'])
 def upload():
@@ -79,7 +79,7 @@ def insert():
         print(emptable)
         for detail in emptable:
             var = detail
-        return render_template('AddEmp.html',var=var)
+        return render_template('index.html',var=var)
 
 
 # @app.route("/about", methods=['POST'])

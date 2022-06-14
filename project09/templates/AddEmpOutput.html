@@ -55,13 +55,13 @@ h1 , h2{
     .button:hover{
         background-color: var(--color-secondary);
     }
+
 	</style>
 
 
 		<body>
-			<h1>SAVE SUCCESSFUL</h1><br>
-			<h2>Following Candidate has been added to the database</h2><br>
-			<h2>{{ name }}</h2><br>
+			<h1>Welcome {{ name }}</h1><br>
+			<h2>Congratulations you have been offered {{ esalary }}</h2><br>
 			<div class="container">
 			<div class="formcontainer"
 			action="/retemp"
@@ -69,9 +69,7 @@ h1 , h2{
 			method="GET"
 			enctype="multipart/form-data">
 
-
-			   {{ var }}
-
+			<p>{{ name }}</p>
 				Name:<br> {{ name }} <br><br>
 
 				Email:<br> {{ email }} <br><br>

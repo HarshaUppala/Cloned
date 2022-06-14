@@ -99,16 +99,16 @@ background-size: cover;
         <input placeholder="Enter your phone number" name="ephno" maxlength="10" minlength="10">
 
         <label for="experience">Experience</label>
-        <input placeholder="Experience in no.of years" type="number" name="exp" required>
+        <input placeholder="Experience in no.of years" type="number" id="expid" name="exp" required>
 
         <label for="aptitudescore" >Aptitude Score</label>
-        <input placeholder="Marks scored in aptitude" type="number" name="apt" id="aptid"  required>
+        <input placeholder="Marks scored in aptitude (0 - 30)" type="number" name="apt" id="aptid"  required>
 
         <label for="gdscore">Group Discussion(GD) Score</label>
-        <input placeholder="Marks scored in GD" type="number" name="gdscore" id="gdid" required>
+        <input placeholder="Marks scored in GD (0 - 30)" type="number" name="gdscore" id="gdid" required>
 
         <label for="hrscore">HR score</label>
-        <input placeholder="Marks scored in HR round" type="number" name="hrscore" id="hrid" onchange="output()"  required>
+        <input placeholder="Marks scored in HR round (0 - 30)" type="number" name="hrscore" id="hrid" onchange="output()"  required>
 
         <label for="Location">Location</label>
         <input placeholder="Loaction" type="text" name="location" required>
@@ -128,7 +128,7 @@ background-size: cover;
           class="button"
             type="submit"
             onclick="process()"
-          >UPDATE DATABASE
+          >Submit
         </button>
         </form>
       </div>
@@ -144,20 +144,21 @@ background-size: cover;
         console.log(typeof(apt));
         var gd=Number(document.getElementById('gdid').value);
         var hr=Number(document.getElementById('hrid').value);
-        var score=(gd+hr+apt)/10;
-			if(score<30){
+        var exp=Number(document.getElementById('expid').value);
+        var score=((gd+hr+apt)/10) * (exp*4) ;
+			if(score>0 && score<30){
 			console.log("CTC Offered 3 LPA "+score);
-      document.getElementById('pass').value='CTC Offered 3 LPA';
+      document.getElementById('pass').value='3 LPA CTC by Phoenix Global';
 			}
 			else if(score>30 && score<60){
 			console.log("CTC Offered 5 LPA "+score);
-      document.getElementById('pass').value='CTC Offered 5 LPA';
+      document.getElementById('pass').value='5 LPA CTC by Phoenix Global';
 			}
 			else{
 			console.log("CTC Offered 8 LPA "+score);
-      document.getElementById('pass').value='CTC Offered 8 LPA';
+      document.getElementById('pass').value='8 LPA CTC by Phoenix Global';
 			}
-        }
+      }
        
       </script>
       </body>
