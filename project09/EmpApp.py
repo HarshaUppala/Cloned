@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, request,render_template
 from pymysql import *
 import os
 import boto3
@@ -27,8 +27,6 @@ db_conn = connections.Connection(
 )
 output = {}
 table = 'emptable'
-
-
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -87,6 +85,10 @@ def insert():
         for detail in emptable:
             var = detail
         return render_template('index.html',var=var)
+
+@app.route('/hello')
+def hello():
+    return render_template('hello.html')
 
 
 # @app.route("/about", methods=['POST'])
