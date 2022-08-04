@@ -9,7 +9,7 @@ from werkzeug.utils import *
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
-BUCKET = "<dataemployee001>"
+BUCKET = "<insuranceproject001>"
 
 
 # app = Flask(__name__)
@@ -26,7 +26,7 @@ db_conn = connections.Connection(
 
 )
 output = {}
-table = 'emptable'
+table = 'empdata'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -43,22 +43,22 @@ def upload():
 
 def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary):
     cur=db_conn.cursor()
-    cur.execute("INSERT INTO emptable(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location,salary))
+    cur.execute("INSERT INTO empdata(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location,salary))
     db_conn.commit()#read the data
 
 def get_details():
     cur=db_conn.cursor()
-    # cur.execute("SELECT *  FROM emptable")
-    cur.execute("SELECT ename,email, ephno, exp, apt,gdscore,hrscore,location,salary  FROM 'emptable';")
-    emptable = cur.fetchall()
-    return emptable
+    # cur.execute("SELECT *  FROM empdata")
+    cur.execute("SELECT ename,email, ephno, exp, apt,gdscore,hrscore,location,salary  FROM 'empdata';")
+    empdata = cur.fetchall()
+    return empdata
 
 @app.route("/fetch_details")
 def fetch_details(eemail):
     cur=db_conn.cursor()
-    # cur.execute("SELECT *  FROM emptable")
-    cur.execute("SELECT * from emptable Where email==eemail;")
-    emptable = cur.fetchall()
+    # cur.execute("SELECT *  FROM empdata")
+    cur.execute("SELECT * from empdata Where email==eemail;")
+    empdata = cur.fetchall()
     return render_template('hello.html',name=ename,email=email,phno=ephno,experience=exp,aptitude=apt,gd=gdscore,hr=hrscore,loc=location,esalary=salary)
 
 @app.route("/pics")
@@ -80,9 +80,9 @@ def insert():
         location = request.form['location']
         salary = request.form['salary']
         insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary)
-        emptable = get_details()
-        print(emptable)
-        for detail in emptable:
+        empdata = get_details()
+        print(empdata)
+        for detail in empdata:
             var = detail
         return render_template('index.html',var=var)
 
@@ -108,7 +108,7 @@ def AddEmp():
     salary =request.form['salary']
     emp_resume = request.files['emp_resume']
 
-    insert_sql = "INSERT INTO emptable VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    insert_sql = "INSERT INTO empdata VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     cursor = db_conn.cursor()
     if emp_resume.filename == "":
         return "Please select a file"
