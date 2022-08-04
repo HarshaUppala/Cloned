@@ -9,7 +9,7 @@ from werkzeug.utils import *
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
-BUCKET = "<insuranceproject001>"
+BUCKET = "<dataemployee001>"
 
 
 # app = Flask(__name__)
