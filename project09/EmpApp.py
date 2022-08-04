@@ -41,10 +41,10 @@ def upload():
         return redirect("/")
 
 
-def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary):
-    cur=db_conn.cursor()
-    cur.execute("INSERT INTO empdata(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location,salary))
-    db_conn.commit()#read the data
+# def insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary):
+#     cur=db_conn.cursor()
+#     cur.execute("INSERT INTO empdata(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (ename,email, ephno, exp, apt,gdscore,hrscore,location,salary))
+#     db_conn.commit()#read the data
 
 def get_details():
     cur=db_conn.cursor()
@@ -66,25 +66,25 @@ def list():
     contents = show_image(BUCKET)
     return render_template('AddEmpOutput.html', contents=contents)
 
-@app.route('/insert',methods = ['post'])
-def insert():
+# @app.route('/insert',methods = ['post'])
+# def insert():
     
-    if request.method == 'POST':
-        ename = request.form['ename']
-        email = request.form['email']
-        ephno = request.form['ephno']
-        exp = request.form['exp']
-        apt = request.form['apt']
-        gdscore = request.form['gdscore']
-        hrscore = request.form['hrscore']
-        location = request.form['location']
-        salary = request.form['salary']
-        insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary)
-        empdata = get_details()
-        print(empdata)
-        for detail in empdata:
-            var = detail
-        return render_template('index.html',var=var)
+#     if request.method == 'POST':
+#         ename = request.form['ename']
+#         email = request.form['email']
+#         ephno = request.form['ephno']
+#         exp = request.form['exp']
+#         apt = request.form['apt']
+#         gdscore = request.form['gdscore']
+#         hrscore = request.form['hrscore']
+#         location = request.form['location']
+#         salary = request.form['salary']
+#         insert_details(ename,email, ephno, exp, apt,gdscore,hrscore,location,salary)
+#         empdata = get_details()
+#         print(empdata)
+#         for detail in empdata:
+#             var = detail
+#         return render_template('index.html',var=var)
 
 @app.route('/hello')
 def hello():
